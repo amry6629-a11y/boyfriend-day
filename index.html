@@ -3,162 +3,663 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Boyfriend Day 🤍</title>
+
+  <title>For My Boyfriend 🤍</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ffd6e7, #f8b8cf, #fff0f5);
-      padding: 25px;
+    body{
+      font-family:Arial, sans-serif;
+      min-height:100vh;
+      background:linear-gradient(145deg,#130d12,#29151f,#3b1c2a);
+      color:white;
+      overflow:hidden;
     }
 
-    .card {
-      width: 100%;
-      max-width: 420px;
-      background: rgba(255, 255, 255, 0.88);
-      padding: 30px 25px;
-      border-radius: 25px;
-      text-align: center;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    .page{
+      min-height:100vh;
+      width:100%;
+      display:none;
+      justify-content:center;
+      align-items:center;
+      padding:25px;
+      text-align:center;
     }
 
-    h1 {
-      font-size: 28px;
-      color: #d85b87;
-      margin-bottom: 10px;
+    .page.active{
+      display:flex;
+      animation:fade .7s ease;
     }
 
-    .date {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 25px;
+    .card{
+      width:100%;
+      max-width:420px;
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.15);
+      backdrop-filter:blur(12px);
+      padding:30px 24px;
+      border-radius:28px;
+      box-shadow:0 15px 50px rgba(0,0,0,.35);
     }
 
-    .message {
-      color: #444;
-      line-height: 1.8;
-      font-size: 16px;
-      text-align: left;
-      display: none;
-      animation: muncul 1s ease;
+    h1{
+      font-size:29px;
+      margin-bottom:15px;
     }
 
-    .message p {
-      margin-bottom: 15px;
+    h2{
+      margin-bottom:15px;
     }
 
-    button {
-      border: none;
-      background: #e8759c;
-      color: white;
-      padding: 13px 25px;
-      border-radius: 30px;
-      font-size: 15px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.3s;
+    p{
+      line-height:1.7;
+      color:#f6dce7;
     }
 
-    button:hover {
-      transform: scale(1.05);
-      background: #d85b87;
+    .big-heart{
+      font-size:60px;
+      animation:beat 1.3s infinite;
+      margin:15px;
     }
 
-    .heart {
-      font-size: 45px;
-      margin: 15px 0;
-      animation: heartbeat 1.2s infinite;
+    button{
+      margin-top:22px;
+      background:#eb81a8;
+      color:white;
+      border:none;
+      padding:14px 25px;
+      border-radius:30px;
+      font-size:15px;
+      cursor:pointer;
+      box-shadow:0 6px 20px rgba(235,129,168,.35);
     }
 
-    .footer {
-      margin-top: 20px;
-      font-size: 13px;
-      color: #999;
+    button:active{
+      transform:scale(.96);
     }
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
+    input{
+      width:100%;
+      padding:14px 17px;
+      margin-top:18px;
+      border:none;
+      outline:none;
+      border-radius:20px;
+      font-size:16px;
+      text-align:center;
+      background:white;
     }
 
-    @keyframes muncul {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
+    #error{
+      display:none;
+      color:#ffb0c8;
+      margin-top:12px;
+    }
+
+    /* GAME */
+
+    .game-area{
+      height:300px;
+      position:relative;
+      margin-top:20px;
+      border-radius:22px;
+      background:rgba(255,255,255,.06);
+      overflow:hidden;
+    }
+
+    .game-heart{
+      position:absolute;
+      font-size:40px;
+      cursor:pointer;
+      user-select:none;
+      animation:pop .3s ease;
+    }
+
+    .counter{
+      margin-top:15px;
+      font-weight:bold;
+    }
+
+    /* PERTANYAAN SAYANG */
+
+    .choice-area{
+      position:relative;
+      height:190px;
+      margin-top:15px;
+    }
+
+    .yes-btn{
+      position:absolute;
+      left:15%;
+      top:25px;
+    }
+
+    .no-btn{
+      position:absolute;
+      right:15%;
+      top:25px;
+      transition:.15s;
+    }
+
+    /* SURAT */
+
+    .letter{
+      text-align:left;
+      margin-top:20px;
+    }
+
+    .letter p{
+      margin-bottom:15px;
+    }
+
+    .signature{
+      text-align:center;
+      margin-top:25px;
+      font-size:14px;
+      color:#efb7ca;
+    }
+
+    /* HATI TERBANG */
+
+    .floating{
+      position:fixed;
+      bottom:-30px;
+      font-size:20px;
+      opacity:.4;
+      animation:floatUp linear forwards;
+      pointer-events:none;
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(15px);
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      to{
+        opacity:1;
+        transform:translateY(0);
       }
     }
+
+    @keyframes beat{
+      50%{
+        transform:scale(1.18);
+      }
+    }
+
+    @keyframes pop{
+      from{
+        transform:scale(0);
+      }
+      to{
+        transform:scale(1);
+      }
+    }
+
+    @keyframes floatUp{
+      to{
+        transform:translateY(-110vh);
+        opacity:0;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
+
+<!-- HALAMAN 1 -->
+
+<section class="page active" id="page1">
+
   <div class="card">
-    <h1>Happy Boyfriend Dayyy 🤍</h1>
 
-    <div class="date">
-      3 Oktober
-    </div>
+    <div class="big-heart">🤍</div>
 
-    <div class="heart">💗</div>
+    <h1>heii kamuuu</h1>
 
-    <button id="openBtn" onclick="bukaPesan()">
-      pencet di sini sayanggg
+    <p>
+      akuu ada sesuatu buat kamuu,
+      tapii nda boleh langsung dibukaa heheee
+    </p>
+
+    <button onclick="nextPage(2)">
+      lanjut duluu
     </button>
 
-    <div class="message" id="message">
+  </div>
+
+</section>
+
+
+<!-- HALAMAN 2 : NAMA -->
+
+<section class="page" id="page2">
+
+  <div class="card">
+
+    <h2>sebelum lanjut...</h2>
+
+    <p>
+      buktiin duluu kalau yang buka ini orang yang benerr
+    </p>
+
+    <input
+      id="nameInput"
+      type="text"
+      placeholder="siapaa nama kamuu?"
+    >
+
+    <div id="error">
+      ihh bukann, coba lagii 😭
+    </div>
+
+    <button onclick="checkName()">
+      cek namaa
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- HALAMAN 3 : GAME -->
+
+<section class="page" id="page3">
+
+  <div class="card">
+
+    <h2>ada satu tantangann</h2>
+
+    <p>
+      tangkap <b>5 hati</b> duluu baru boleh lanjut
+    </p>
+
+    <div class="counter">
+      hati terkumpul:
+      <span id="score">0</span>/5
+    </div>
+
+    <div class="game-area" id="gameArea"></div>
+
+  </div>
+
+</section>
+
+
+<!-- HALAMAN 4 : SELESAI GAME -->
+
+<section class="page" id="page4">
+
+  <div class="card">
+
+    <div class="big-heart">💗</div>
+
+    <h2>yeayyy berhasill</h2>
+
+    <p>
+      ternyataa kamuu lumayan jago jugaa wkwkk
+    </p>
+
+    <p style="margin-top:10px;">
+      tapii masih ada satu lagii
+    </p>
+
+    <button onclick="nextPage(5)">
+      lanjuttt
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- HALAMAN 5 : PERTANYAAN -->
+
+<section class="page" id="page5">
+
+  <div class="card">
+
+    <div class="big-heart">💗</div>
+
+    <h2>ehh tunggu duluu</h2>
+
+    <p>
+      sebelum buka hadiahnyaa...
+    </p>
+
+    <h2 style="margin-top:20px;">
+      kamuu sayang akuu ndaa?
+    </h2>
+
+    <div class="choice-area" id="choiceArea">
+
+      <button
+        class="yes-btn"
+        onclick="yesAnswer()"
+      >
+        IYAAA 🤍
+      </button>
+
+      <button
+        class="no-btn"
+        id="noButton"
+        onmouseover="moveNoButton()"
+        ontouchstart="moveNoButton(event)"
+        onclick="moveNoButton(event)"
+      >
+        NDAAA
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- HALAMAN 6 : SURAT -->
+
+<section class="page" id="page6">
+
+  <div class="card">
+
+    <h1>Happy Boyfriend Dayyy 🤍</h1>
+
+    <p>3 Oktober</p>
+
+    <div class="letter">
 
       <p>
-        happy boyfriend dayyy sayanggg 🤍
+        makasihhh sayanggg udah hadir dan nemenin
+        akuu sejauh inii.
       </p>
 
       <p>
-        makasihh yaa udah hadir dan nemenin akuu sejauh inii.
-        walaupun kadang kita beda pendapat, bikin kesel,
-        bikin kepikiran, tapii tetep ajaa aku seneng punya kamuu.
+        walaupun kadang kita beda pendapat,
+        bikin kesel, bikin kepikiran,
+        tapii tetep ajaa akuu seneng punya kamuu.
       </p>
 
       <p>
-        semogaa kita bisa terus belajar ngerti satu sama lain,
-        saling jaga, saling support, dan hubungan kita bisa
+        semogaa kita bisa terus belajar ngerti
+        satu sama lain, saling jaga,
+        saling support, dan hubungan kita
         makin baikk kedepannya.
       </p>
 
       <p>
-        jaga diri, jaga kesehatan, samaa jaga hati juga yaa sayanggg.
-        makasihh udah jadi bagian dari hari" akuu 🤍
+        jaga diri, jaga kesehatan,
+        jangan lupa makan,
+        samaa satu lagii...
+        jaga hati jugaa yaa sayanggg.
       </p>
 
-      <p style="text-align:center; font-size:22px;">
-        i loveee uuu 🤍
+      <p>
+        makasihh udah jadi bagian dari hari"
+        akuu 🤍
       </p>
-
-      <div class="footer">
-        from your princess ♡
-      </div>
 
     </div>
+
+    <div class="big-heart">
+      🫶🏻
+    </div>
+
+    <div class="signature">
+      from your princess ♡
+    </div>
+
   </div>
 
-  <script>
-    function bukaPesan() {
-      document.getElementById("message").style.display = "block";
-      document.getElementById("openBtn").style.display = "none";
+</section>
+
+
+<script>
+
+/* PINDAH HALAMAN */
+
+function nextPage(number){
+
+  document
+  .querySelectorAll(".page")
+  .forEach(page=>{
+    page.classList.remove("active");
+  });
+
+  document
+  .getElementById("page"+number)
+  .classList.add("active");
+}
+
+
+/* CEK NAMA */
+
+const correctName = "cleosa";
+
+function checkName(){
+
+  let input =
+  document
+  .getElementById("nameInput")
+  .value
+  .trim()
+  .toLowerCase();
+
+  if(input === correctName){
+
+    document
+    .getElementById("error")
+    .style.display="none";
+
+    nextPage(3);
+
+    setTimeout(createHeart,400);
+
+  }else{
+
+    document
+    .getElementById("error")
+    .style.display="block";
+
+  }
+}
+
+
+/* BISA TEKAN ENTER SAAT ISI NAMA */
+
+document
+.getElementById("nameInput")
+.addEventListener("keydown", function(event){
+
+  if(event.key === "Enter"){
+    checkName();
+  }
+
+});
+
+
+/* MINI GAME */
+
+let score = 0;
+
+function createHeart(){
+
+  if(score >= 5){
+    return;
+  }
+
+  const area =
+  document.getElementById("gameArea");
+
+  area.innerHTML="";
+
+  const heart =
+  document.createElement("div");
+
+  heart.className="game-heart";
+
+  const hearts=[
+    "💗",
+    "🤍",
+    "💖",
+    "💕",
+    "🫶🏻"
+  ];
+
+  heart.innerHTML =
+  hearts[
+    Math.floor(
+      Math.random()*hearts.length
+    )
+  ];
+
+  const maxX =
+  area.clientWidth - 60;
+
+  const maxY =
+  area.clientHeight - 60;
+
+  heart.style.left =
+  Math.random()*maxX+"px";
+
+  heart.style.top =
+  Math.random()*maxY+"px";
+
+
+  heart.onclick=function(){
+
+    score++;
+
+    document
+    .getElementById("score")
+    .innerText=score;
+
+    if(score >= 5){
+
+      area.innerHTML=
+      "<div style='padding-top:120px;font-size:22px;'>berhasill 🤍</div>";
+
+      setTimeout(()=>{
+        nextPage(4);
+      },900);
+
+    }else{
+
+      createHeart();
+
     }
-  </script>
+
+  };
+
+  area.appendChild(heart);
+}
+
+
+/* TOMBOL NDAA KABUR */
+
+function moveNoButton(event){
+
+  if(event){
+    event.preventDefault();
+  }
+
+  const button =
+  document.getElementById("noButton");
+
+  const area =
+  document.getElementById("choiceArea");
+
+  const maxX =
+  area.clientWidth -
+  button.offsetWidth;
+
+  const maxY =
+  area.clientHeight -
+  button.offsetHeight;
+
+  const randomX =
+  Math.random()*maxX;
+
+  const randomY =
+  Math.random()*maxY;
+
+  button.style.left =
+  randomX+"px";
+
+  button.style.top =
+  randomY+"px";
+
+  button.style.right =
+  "auto";
+}
+
+
+/* KALAU PILIH IYAAA */
+
+function yesAnswer(){
+
+  nextPage(6);
+
+  for(let i=0; i<15; i++){
+
+    setTimeout(()=>{
+      floatingHeart();
+    }, i*100);
+
+  }
+
+}
+
+
+/* HATI TERBANG */
+
+function floatingHeart(){
+
+  const heart =
+  document.createElement("div");
+
+  heart.className="floating";
+
+  const hearts=[
+    "🤍",
+    "💗",
+    "💕",
+    "💖"
+  ];
+
+  heart.innerHTML =
+  hearts[
+    Math.floor(
+      Math.random()*hearts.length
+    )
+  ];
+
+  heart.style.left =
+  Math.random()*100+"vw";
+
+  heart.style.animationDuration =
+  (5+Math.random()*4)+"s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },9000);
+}
+
+
+/* HATI TERBANG OTOMATIS */
+
+setInterval(floatingHeart,1200);
+
+</script>
 
 </body>
-  </html>
+</html>

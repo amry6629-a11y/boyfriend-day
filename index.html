@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Boyfriend Day 🤍</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffd6e7, #f8b8cf, #fff0f5);
+      padding: 25px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.88);
+      padding: 30px 25px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #d85b87;
+      margin-bottom: 10px;
+    }
+
+    .date {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .message {
+      color: #444;
+      line-height: 1.8;
+      font-size: 16px;
+      text-align: left;
+      display: none;
+      animation: muncul 1s ease;
+    }
+
+    .message p {
+      margin-bottom: 15px;
+    }
+
+    button {
+      border: none;
+      background: #e8759c;
+      color: white;
+      padding: 13px 25px;
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #d85b87;
+    }
+
+    .heart {
+      font-size: 45px;
+      margin: 15px 0;
+      animation: heartbeat 1.2s infinite;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    @keyframes muncul {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Happy Boyfriend Dayyy 🤍</h1>
+
+    <div class="date">
+      3 Oktober
+    </div>
+
+    <div class="heart">💗</div>
+
+    <button id="openBtn" onclick="bukaPesan()">
+      pencet di sini sayanggg
+    </button>
+
+    <div class="message" id="message">
+
+      <p>
+        happy boyfriend dayyy sayanggg 🤍
+      </p>
+
+      <p>
+        makasihh yaa udah hadir dan nemenin akuu sejauh inii.
+        walaupun kadang kita beda pendapat, bikin kesel,
+        bikin kepikiran, tapii tetep ajaa aku seneng punya kamuu.
+      </p>
+
+      <p>
+        semogaa kita bisa terus belajar ngerti satu sama lain,
+        saling jaga, saling support, dan hubungan kita bisa
+        makin baikk kedepannya.
+      </p>
+
+      <p>
+        jaga diri, jaga kesehatan, samaa jaga hati juga yaa sayanggg.
+        makasihh udah jadi bagian dari hari" akuu 🤍
+      </p>
+
+      <p style="text-align:center; font-size:22px;">
+        i loveee uuu 🤍
+      </p>
+
+      <div class="footer">
+        from your princess ♡
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function bukaPesan() {
+      document.getElementById("message").style.display = "block";
+      document.getElementById("openBtn").style.display = "none";
+    }
+  </script>
+
+</body>
+  </html>
